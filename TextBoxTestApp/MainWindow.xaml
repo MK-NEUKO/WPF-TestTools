@@ -31,6 +31,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
     </Window.Resources>
     
     <Grid>
@@ -65,43 +66,83 @@
                          Text="{Binding ElementName=testTextBox, Path=Text}"/>
             </GroupBox>
 
+            <GroupBox Header="FontSize">
+                <StackPanel Orientation="Horizontal"
+                            Margin="5">
+                    <ComboBox x:Name="frontSizeSelect"
+                              Margin="0,0,5,0">
+                        <ComboBoxItem Tag="{x:Null}" Content="x:Null" IsSelected="True"/>
+                        <ComboBoxItem Tag="{Binding ElementName=fontSizeSlider, Path=Value}" Content="On"/>
+                    </ComboBox>
+                    <Slider x:Name="fontSizeSlider"
+                        TickFrequency="2"
+                        Minimum="10"
+                        Maximum="100"
+                        TickPlacement="BottomRight"
+                        Width="200"/>
+                    <TextBlock Text="{Binding ElementName=fontSizeSlider, Path=Value, StringFormat=FontSize: {0:0}}"/>
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="Height">
+                <StackPanel Orientation="Horizontal"
+                            Margin="5">
+                    <ComboBox x:Name="heightSelect"
+                              Margin="0,0,5,0">
+                        <ComboBoxItem Tag="{x:Null}" Content="x:Null" IsSelected="True"/>
+                        <ComboBoxItem Tag="{Binding ElementName=heightSlider, Path=Value}" Content="On"/>
+                    </ComboBox>
+                    <Slider x:Name="heightSlider"
+                        TickFrequency="4"
+                        Minimum="20"
+                        Maximum="200"
+                        TickPlacement="BottomRight"
+                        Width="200"/>
+                    <TextBlock Text="{Binding ElementName=heightSlider, Path=Value, StringFormat=Height: {0:0}}"/>
+                </StackPanel>
+            </GroupBox>
+
             <GroupBox Header="VerticalAlignment">
                 <ComboBox x:Name="verticalAlignment"
                           Margin="4">
-                    <ComboBoxItem Tag="Bottem" Content="Bottom"/>
+                    <ComboBoxItem Tag="{x:Null}" Content="x:Null" IsSelected="True"/>
+                    <ComboBoxItem Tag="Bottom" Content="Bottom"/>
                     <ComboBoxItem Tag="Center" Content="Center"/>
                     <ComboBoxItem Tag="Stretch" Content="Stretch"/>
-                    <ComboBoxItem Tag="Top" Content="Top" IsSelected="True"/>
+                    <ComboBoxItem Tag="Top" Content="Top"/>
                 </ComboBox>
             </GroupBox>
 
-            <GroupBox Header="VerticalVontentAlignment">
+            <GroupBox Header="VerticalContentAlignment">
                 <ComboBox x:Name="verticalContentAlignment"
                           Margin="4">
-                    <ComboBoxItem Tag="Bottem" Content="Bottom"/>
+                    <ComboBoxItem Tag="{x:Null}" Content="x:Null" IsSelected="True"/>
+                    <ComboBoxItem Tag="Bottom" Content="Bottom"/>
                     <ComboBoxItem Tag="Center" Content="Center"/>
                     <ComboBoxItem Tag="Stretch" Content="Stretch"/>
-                    <ComboBoxItem Tag="Top" Content="Top" IsSelected="True"/>
+                    <ComboBoxItem Tag="Top" Content="Top"/>
                 </ComboBox>
             </GroupBox>
        
             <GroupBox Header="HorizontalAlignment">
                 <ComboBox x:Name="horizontalAlignment"
                         Margin="4">
-                    <ComboBoxItem Tag="Bottem" Content="Bottom"/>
+                    <ComboBoxItem Tag="{x:Null}" Content="x:Null" IsSelected="True"/>
                     <ComboBoxItem Tag="Center" Content="Center"/>
+                    <ComboBoxItem Tag="Left" Content="Left"/>
+                    <ComboBoxItem Tag="Right" Content="Right"/>
                     <ComboBoxItem Tag="Stretch" Content="Stretch"/>
-                    <ComboBoxItem Tag="Top" Content="Top" IsSelected="True"/>
                 </ComboBox>
             </GroupBox>
 
-            <GroupBox Header="HorizontalVontentAlignment">
+            <GroupBox Header="HorizontalContentAlignment">
                 <ComboBox x:Name="horizontalContentAlignment"
                         Margin="4">
-                    <ComboBoxItem Tag="Bottem" Content="Bottom"/>
+                    <ComboBoxItem Tag="{x:Null}" Content="x:Null" IsSelected="True"/>
                     <ComboBoxItem Tag="Center" Content="Center"/>
+                    <ComboBoxItem Tag="Left" Content="Left"/>
+                    <ComboBoxItem Tag="Right" Content="Right"/>
                     <ComboBoxItem Tag="Stretch" Content="Stretch"/>
-                    <ComboBoxItem Tag="Top" Content="Top" IsSelected="True"/>
                 </ComboBox>
             </GroupBox>
 
@@ -110,10 +151,13 @@
                  x:Name="testTextBox"
                  Style="{Binding ElementName=styleOptionsComboBox, Path=SelectedItem.Tag}"
                  Text="{Binding ElementName=inputTestText, Path=Text}"
+                 FontSize="{Binding ElementName=frontSizeSelect, Path=SelectedItem.Tag}"
+                 Height="{Binding ElementName=heightSelect, Path=SelectedItem.Tag}"
                  VerticalAlignment="{Binding ElementName=verticalAlignment, Path=SelectedItem.Tag}"
                  VerticalContentAlignment="{Binding ElementName=verticalContentAlignment, Path=SelectedItem.Tag}"
                  HorizontalAlignment="{Binding ElementName=horizontalAlignment, Path=SelectedItem.Tag}"
-                 HorizontalContentAlignment="{Binding ElementName=horizontalContentAlignment, Path=SelectedItem.Tad}">
+                 HorizontalContentAlignment="{Binding ElementName=horizontalContentAlignment, Path=SelectedItem.Tag}">
         </TextBox>
+        
     </Grid>
 </Window>
