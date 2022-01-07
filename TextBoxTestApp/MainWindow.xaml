@@ -80,7 +80,7 @@
                         Maximum="100"
                         TickPlacement="BottomRight"
                         Width="200"/>
-                    <TextBlock Text="{Binding ElementName=fontSizeSlider, Path=Value, StringFormat=FontSize: {0:0}}"/>
+                    <TextBlock Text="{Binding ElementName=fontSizeSlider, Path=Value, StringFormat=Value: {0:0}}"/>
                 </StackPanel>
             </GroupBox>
 
@@ -98,7 +98,7 @@
                         Maximum="200"
                         TickPlacement="BottomRight"
                         Width="200"/>
-                    <TextBlock Text="{Binding ElementName=heightSlider, Path=Value, StringFormat=Height: {0:0}}"/>
+                    <TextBlock Text="{Binding ElementName=heightSlider, Path=Value, StringFormat=Value: {0:0}}"/>
                 </StackPanel>
             </GroupBox>
 
@@ -147,6 +147,34 @@
             </GroupBox>
 
         </WrapPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel>
+                <GroupBox Header="Padding Left">
+                    <StackPanel Orientation="Horizontal"
+                                Margin="4">
+                        <ComboBox x:Name="paddingLeftSelect"
+                              Margin="0,0,5,0">
+                            <ComboBoxItem Tag="{x:Null}" Content="x:Null" IsSelected="True"/>
+                            <ComboBoxItem Tag="{Binding ElementName=fontSizeSlider, Path=Value}" Content="On"/>
+                        </ComboBox>
+                        <Slider x:Name="paddingLeftSlider"
+                                Minimum="0"
+                                Maximum="20"
+                                TickFrequency="1"
+                                TickPlacement="BottomRight"
+                                Width="140"/>
+                        <TextBlock Text="{Binding ElementName=paddingLeftSlider, Path=Value, StringFormat=Value: {0:0}}"/>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+
+        </Grid>
         <TextBox Grid.Row="2"
                  x:Name="testTextBox"
                  Style="{Binding ElementName=styleOptionsComboBox, Path=SelectedItem.Tag}"
@@ -156,7 +184,8 @@
                  VerticalAlignment="{Binding ElementName=verticalAlignment, Path=SelectedItem.Tag}"
                  VerticalContentAlignment="{Binding ElementName=verticalContentAlignment, Path=SelectedItem.Tag}"
                  HorizontalAlignment="{Binding ElementName=horizontalAlignment, Path=SelectedItem.Tag}"
-                 HorizontalContentAlignment="{Binding ElementName=horizontalContentAlignment, Path=SelectedItem.Tag}">
+                 HorizontalContentAlignment="{Binding ElementName=horizontalContentAlignment, Path=SelectedItem.Tag}"
+                 Padding="{Binding ElementName=paddingLeftSelect, Path=SelectedItem.Tag}">
         </TextBox>
         
     </Grid>
