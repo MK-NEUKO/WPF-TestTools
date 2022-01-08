@@ -172,6 +172,24 @@
                         <TextBlock Text="{Binding ElementName=paddingLeftSlider, Path=Value, StringFormat=Value: {0:0}}"/>
                     </StackPanel>
                 </GroupBox>
+
+                <GroupBox Header="Padding Bottom">
+                    <StackPanel Orientation="Horizontal"
+                                Margin="4">
+                        <ComboBox x:Name="paddingBottemSelect"
+                              Margin="0,0,5,0">
+                            <ComboBoxItem Tag="{x:Null}" Content="x:Null" IsSelected="True"/>
+                            <ComboBoxItem Tag="{Binding ElementName=fontBottomSlider, Path=Value}" Content="On"/>
+                        </ComboBox>
+                        <Slider x:Name="paddingBottomSlider"
+                                Minimum="0"
+                                Maximum="20"
+                                TickFrequency="1"
+                                TickPlacement="BottomRight"
+                                Width="140"/>
+                        <TextBlock Text="{Binding ElementName=paddingBottomSlider, Path=Value, StringFormat=Value: {0:0}}"/>
+                    </StackPanel>
+                </GroupBox>
             </StackPanel>
 
         </Grid>
@@ -184,8 +202,7 @@
                  VerticalAlignment="{Binding ElementName=verticalAlignment, Path=SelectedItem.Tag}"
                  VerticalContentAlignment="{Binding ElementName=verticalContentAlignment, Path=SelectedItem.Tag}"
                  HorizontalAlignment="{Binding ElementName=horizontalAlignment, Path=SelectedItem.Tag}"
-                 HorizontalContentAlignment="{Binding ElementName=horizontalContentAlignment, Path=SelectedItem.Tag}"
-                 Padding="{Binding ElementName=paddingLeftSelect, Path=SelectedItem.Tag}">
+                 HorizontalContentAlignment="{Binding ElementName=horizontalContentAlignment, Path=SelectedItem.Tag}">
         </TextBox>
         
     </Grid>

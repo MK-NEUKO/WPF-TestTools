@@ -24,6 +24,14 @@ namespace TextBoxTestApp
         public MainWindow()
         {
             InitializeComponent();
+            CreatePadding();
+        }
+
+        private void CreatePadding()
+        {
+            var left = paddingLeftSlider.Value; 
+
+            testTextBox.Padding = new Thickness(left, top, right, bottom);
         }
     }
 }
