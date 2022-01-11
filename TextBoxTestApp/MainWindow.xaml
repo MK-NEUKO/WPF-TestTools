@@ -4,9 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TextBoxTestApp"
+        xmlns:clr="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="TextBox - TestApp -- MK-NEUKO" Height="450" Width="800">
     <Window.Resources>
+
         <Style x:Key="testTextBoxStyle" TargetType="{x:Type TextBox}">
             <Setter Property="OverridesDefaultStyle" Value="True"/>
             <Setter Property="SnapsToDevicePixels" Value="True"/>
@@ -156,42 +158,94 @@
 
             <StackPanel>
                 <GroupBox Header="Padding Left">
-                    <StackPanel Orientation="Horizontal"
-                                Margin="4">
-                        <ComboBox x:Name="paddingLeftSelect"
-                              Margin="0,0,5,0">
-                            <ComboBoxItem Tag="{x:Null}" Content="x:Null" IsSelected="True"/>
-                            <ComboBoxItem Tag="{Binding ElementName=fontSizeSlider, Path=Value}" Content="On"/>
-                        </ComboBox>
-                        <Slider x:Name="paddingLeftSlider"
-                                Minimum="0"
-                                Maximum="20"
-                                TickFrequency="1"
-                                TickPlacement="BottomRight"
-                                Width="140"/>
-                        <TextBlock Text="{Binding ElementName=paddingLeftSlider, Path=Value, StringFormat=Value: {0:0}}"/>
-                    </StackPanel>
+                    <Slider x:Name="paddingLeftSlider"
+                            Minimum="0"
+                            Maximum="20"
+                            TickFrequency="1"
+                            TickPlacement="BottomRight"
+                            IsSnapToTickEnabled="True"
+                            ValueChanged="PaddingLeftSlider_ValueChanged"/>
                 </GroupBox>
 
-                <GroupBox Header="Padding Bottom">
-                    <StackPanel Orientation="Horizontal"
-                                Margin="4">
-                        <ComboBox x:Name="paddingBottemSelect"
-                              Margin="0,0,5,0">
-                            <ComboBoxItem Tag="{x:Null}" Content="x:Null" IsSelected="True"/>
-                            <ComboBoxItem Tag="{Binding ElementName=fontBottomSlider, Path=Value}" Content="On"/>
-                        </ComboBox>
-                        <Slider x:Name="paddingBottomSlider"
-                                Minimum="0"
-                                Maximum="20"
-                                TickFrequency="1"
-                                TickPlacement="BottomRight"
-                                Width="140"/>
-                        <TextBlock Text="{Binding ElementName=paddingBottomSlider, Path=Value, StringFormat=Value: {0:0}}"/>
-                    </StackPanel>
+                <GroupBox Header="Padding Top">
+                    <Slider x:Name="paddingTopSlider"
+                            Minimum="0"
+                            Maximum="20"
+                            TickFrequency="1"
+                            TickPlacement="BottomRight"
+                            IsSnapToTickEnabled="True"
+                            ValueChanged="PaddingTopSlider_ValueChanged"/>
                 </GroupBox>
             </StackPanel>
 
+            <GroupBox Grid.Column="1"
+                      Header="Padding">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <TextBox Grid.Row="0"
+                             Text="{Binding ElementName=paddingTopSlider, Path=Value}"
+                             x:Name="paddingTopDisplay"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center"
+                             BorderBrush="Black"/>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Grid.Column="0"
+                                 Text="{Binding ElementName=paddingLeftSlider, Path=Value}"
+                                 x:Name="paddingLeftDisplay"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Center"
+                                 BorderBrush="Black"/>
+                        <TextBox Grid.Column="1"
+                                 Text="20,20,20,20"
+                                 x:Name="paddingThicknesObject"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Center"/>
+                        <TextBox Grid.Column="2"
+                                 Text="{Binding ElementName=paddingRightSlider, Path=Value}"
+                                 x:Name="paddingRightDisplay"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Center"
+                                 BorderBrush="Black"/>
+                    </Grid>
+                    <TextBox Grid.Row="2"
+                             Text="{Binding ElementName=paddingBottomSlider, Path=Value}"
+                             x:Name="paddingBottomDisplay"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center"
+                             BorderBrush="Black"/>
+                </Grid>
+            </GroupBox>
+
+            <StackPanel Grid.Column="2">
+                <GroupBox Header="Padding Right">
+                    <Slider x:Name="paddingRightSlider"
+                            Minimum="0"
+                            Maximum="20"
+                            TickFrequency="1"
+                            TickPlacement="BottomRight"
+                            IsSnapToTickEnabled="True"
+                            ValueChanged="PaddingRightSlider_ValueChanged"/>
+                </GroupBox>
+                <GroupBox Header="Padding Bottom">
+                    <Slider x:Name="paddingBottomSlider"
+                            Minimum="0"
+                            Maximum="20"
+                            TickFrequency="1"
+                            TickPlacement="BottomRight"
+                            IsSnapToTickEnabled="True"
+                            ValueChanged="PaddingBottomSlider_ValueChanged"/>
+                </GroupBox>
+            </StackPanel>
         </Grid>
         <TextBox Grid.Row="2"
                  x:Name="testTextBox"

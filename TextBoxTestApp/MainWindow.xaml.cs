@@ -21,17 +21,57 @@ namespace TextBoxTestApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        public Thickness PaddingTestTextBox
+        { 
+            get; 
+            private set; 
+        }
         public MainWindow()
         {
             InitializeComponent();
-            CreatePadding();
+            PaddingTestTextBox = new Thickness(0);
         }
 
-        private void CreatePadding()
+        private void PaddingLeftSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            var left = paddingLeftSlider.Value; 
+            paddingLeftDisplay.BorderBrush = Brushes.Red;
+            paddingTopDisplay.BorderBrush = Brushes.Black;
+            paddingRightDisplay.BorderBrush = Brushes.Black;
+            paddingBottomDisplay.BorderBrush = Brushes.Black
+        }
 
-            testTextBox.Padding = new Thickness(left, top, right, bottom);
+        private void PaddingTopSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            paddingLeftDisplay.BorderBrush = Brushes.Black;
+            paddingTopDisplay.BorderBrush = Brushes.Red;
+            paddingRightDisplay.BorderBrush = Brushes.Black;
+            paddingBottomDisplay.BorderBrush = Brushes.Black
+        }
+
+        private void PaddingRightSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            paddingLeftDisplay.BorderBrush = Brushes.Black;
+            paddingTopDisplay.BorderBrush = Brushes.Black;
+            paddingRightDisplay.BorderBrush = Brushes.Red;
+            paddingBottomDisplay.BorderBrush = Brushes.Black;
+        }
+
+        private void PaddingBottomSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            paddingLeftDisplay.BorderBrush = Brushes.Black;
+            paddingTopDisplay.BorderBrush = Brushes.Black;
+            paddingRightDisplay.BorderBrush = Brushes.Black;
+            paddingBottomDisplay.BorderBrush = Brushes.Red;
+        }
+
+        private void CreatePaddingTestTextBox(double left, double top, double right, double bottom)
+        {
+            double paddingLeft = 0;
+            double paddigTop = 0;
+            double paddingRight = 0;
+            double paddingBottom = 0;
+
+            PaddingTestTextBox = new Thickness(paddingLeft, paddigTop, paddingRight, paddingBottom);
         }
     }
 }
