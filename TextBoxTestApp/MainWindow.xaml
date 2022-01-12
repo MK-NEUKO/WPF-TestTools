@@ -206,7 +206,6 @@
                                  HorizontalAlignment="Center"
                                  BorderBrush="Black"/>
                         <TextBox Grid.Column="1"
-                                 Text="20,20,20,20"
                                  x:Name="paddingThicknesObject"
                                  VerticalAlignment="Center"
                                  HorizontalAlignment="Center"/>

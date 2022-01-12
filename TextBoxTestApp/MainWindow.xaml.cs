@@ -21,15 +21,16 @@ namespace TextBoxTestApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        public Thickness PaddingTestTextBox
-        { 
-            get; 
-            private set; 
-        }
+        private double _paddingLeft;
+        private double _paddingRight;
+        private double _paddingTop; 
+        private double _paddingBottom;
+
+        public Thickness PaddingTestTextBox { get; private set; }
         public MainWindow()
         {
             InitializeComponent();
-            PaddingTestTextBox = new Thickness(0);
+            PaddingTestTextBox = new Thickness(0,0,0,0);
         }
 
         private void PaddingLeftSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -37,7 +38,9 @@ namespace TextBoxTestApp
             paddingLeftDisplay.BorderBrush = Brushes.Red;
             paddingTopDisplay.BorderBrush = Brushes.Black;
             paddingRightDisplay.BorderBrush = Brushes.Black;
-            paddingBottomDisplay.BorderBrush = Brushes.Black
+            paddingBottomDisplay.BorderBrush = Brushes.Black;
+            _paddingLeft = e.NewValue;
+            CreatePaddingTestTextBox();
         }
 
         private void PaddingTopSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -45,7 +48,9 @@ namespace TextBoxTestApp
             paddingLeftDisplay.BorderBrush = Brushes.Black;
             paddingTopDisplay.BorderBrush = Brushes.Red;
             paddingRightDisplay.BorderBrush = Brushes.Black;
-            paddingBottomDisplay.BorderBrush = Brushes.Black
+            paddingBottomDisplay.BorderBrush = Brushes.Black;
+            _paddingTop = e.NewValue;
+            CreatePaddingTestTextBox();
         }
 
         private void PaddingRightSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -54,6 +59,8 @@ namespace TextBoxTestApp
             paddingTopDisplay.BorderBrush = Brushes.Black;
             paddingRightDisplay.BorderBrush = Brushes.Red;
             paddingBottomDisplay.BorderBrush = Brushes.Black;
+            _paddingRight = e.NewValue;
+            CreatePaddingTestTextBox();
         }
 
         private void PaddingBottomSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -62,16 +69,15 @@ namespace TextBoxTestApp
             paddingTopDisplay.BorderBrush = Brushes.Black;
             paddingRightDisplay.BorderBrush = Brushes.Black;
             paddingBottomDisplay.BorderBrush = Brushes.Red;
+            _paddingBottom = e.NewValue;
+            CreatePaddingTestTextBox();
         }
 
-        private void CreatePaddingTestTextBox(double left, double top, double right, double bottom)
+        private void CreatePaddingTestTextBox()
         {
-            double paddingLeft = 0;
-            double paddigTop = 0;
-            double paddingRight = 0;
-            double paddingBottom = 0;
-
-            PaddingTestTextBox = new Thickness(paddingLeft, paddigTop, paddingRight, paddingBottom);
+            PaddingTestTextBox = new Thickness(_paddingLeft, _paddingTop, _paddingRight, _paddingBottom);
+            paddingThicknesObject.Text = PaddingTestTextBox.ToString();
+            testTextBox.Padding = PaddingTestTextBox;
         }
     }
 }
