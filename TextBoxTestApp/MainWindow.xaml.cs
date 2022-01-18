@@ -25,59 +25,58 @@ namespace TextBoxTestApp
         private double _paddingRight;
         private double _paddingTop; 
         private double _paddingBottom;
+        private Thickness _paddingTestTextBox;
 
-        public Thickness PaddingTestTextBox { get; private set; }
         public MainWindow()
         {
             InitializeComponent();
-            PaddingTestTextBox = new Thickness(0,0,0,0);
+            _paddingTestTextBox = new Thickness(0,0,0,0);
         }
 
-        private void PaddingLeftSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private void PaddingSliderValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            paddingLeftDisplay.BorderBrush = Brushes.Red;
-            paddingTopDisplay.BorderBrush = Brushes.Black;
-            paddingRightDisplay.BorderBrush = Brushes.Black;
-            paddingBottomDisplay.BorderBrush = Brushes.Black;
-            _paddingLeft = e.NewValue;
-            CreatePaddingTestTextBox();
+            ResetPaddingDisplayBorderBrush();
+
+            var currentSlider = (Slider)sender;
+            switch(currentSlider.Name)
+            {
+                case "paddingLeftSlider":
+                    _paddingLeft = currentSlider.Value;
+                    paddingLeftDisplay.BorderBrush = Brushes.Red;
+                    break;
+                case "paddingTopSlider":
+                    _paddingTop = currentSlider.Value;
+                    paddingTopDisplay.BorderBrush = Brushes.Red;
+                    break;
+                case "paddingRightSlider":
+                    _paddingRight = currentSlider.Value;
+                    paddingRightDisplay.BorderBrush = Brushes.Red;
+                    break;
+                case "paddingBottomSlider":
+                    _paddingBottom = currentSlider.Value;
+                    paddingBottomDisplay.BorderBrush = Brushes.Red;
+                    break;
+                    default: throw new ArgumentException("PaddingSliderValueChanged");
+            }
+            SetPaddingTestTextBox();
         }
 
-        private void PaddingTopSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            paddingLeftDisplay.BorderBrush = Brushes.Black;
-            paddingTopDisplay.BorderBrush = Brushes.Red;
-            paddingRightDisplay.BorderBrush = Brushes.Black;
-            paddingBottomDisplay.BorderBrush = Brushes.Black;
-            _paddingTop = e.NewValue;
-            CreatePaddingTestTextBox();
-        }
-
-        private void PaddingRightSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            paddingLeftDisplay.BorderBrush = Brushes.Black;
-            paddingTopDisplay.BorderBrush = Brushes.Black;
-            paddingRightDisplay.BorderBrush = Brushes.Red;
-            paddingBottomDisplay.BorderBrush = Brushes.Black;
-            _paddingRight = e.NewValue;
-            CreatePaddingTestTextBox();
-        }
-
-        private void PaddingBottomSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private void ResetPaddingDisplayBorderBrush()
         {
             paddingLeftDisplay.BorderBrush = Brushes.Black;
-            paddingTopDisplay.BorderBrush = Brushes.Black;
+            paddingTopDisplay.BorderBrush= Brushes.Black;
             paddingRightDisplay.BorderBrush = Brushes.Black;
-            paddingBottomDisplay.BorderBrush = Brushes.Red;
-            _paddingBottom = e.NewValue;
-            CreatePaddingTestTextBox();
+            paddingBottomDisplay.BorderBrush = Brushes.Black;
         }
 
-        private void CreatePaddingTestTextBox()
+        private void SetPaddingTestTextBox()
         {
-            PaddingTestTextBox = new Thickness(_paddingLeft, _paddingTop, _paddingRight, _paddingBottom);
-            paddingThicknesObject.Text = PaddingTestTextBox.ToString();
-            testTextBox.Padding = PaddingTestTextBox;
+            _paddingTestTextBox.Left = _paddingLeft;
+            _paddingTestTextBox.Top = _paddingTop;
+            _paddingTestTextBox.Right = _paddingRight;
+            _paddingTestTextBox.Bottom = _paddingBottom;
+            paddingThicknesObject.Text = _paddingTestTextBox.ToString();
+            testTextBox.Padding = _paddingTestTextBox;
         }
     }
 }
