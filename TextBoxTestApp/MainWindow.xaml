@@ -148,6 +148,17 @@
                 </ComboBox>
             </GroupBox>
 
+            <GroupBox Header="Select FontFamily">
+                <StackPanel Orientation="Horizontal"
+                            Margin="4">
+                    <ComboBox x:Name="selectFontFamily">
+                        <ComboBoxItem Tag="{x:Null}" Content="x:Null" IsSelected="True"/>
+                        <ComboBoxItem Tag="{Binding ElementName=fontFamilyTextBox, Path=Text}" Content="On"/>
+                    </ComboBox>
+                    <TextBox Margin="10,0,0,0" x:Name="fontFamilyTextBox" Width="300"/>
+                </StackPanel>
+            </GroupBox>
+            
         </WrapPanel>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -255,7 +266,8 @@
                  VerticalAlignment="{Binding ElementName=verticalAlignment, Path=SelectedItem.Tag}"
                  VerticalContentAlignment="{Binding ElementName=verticalContentAlignment, Path=SelectedItem.Tag}"
                  HorizontalAlignment="{Binding ElementName=horizontalAlignment, Path=SelectedItem.Tag}"
-                 HorizontalContentAlignment="{Binding ElementName=horizontalContentAlignment, Path=SelectedItem.Tag}">
+                 HorizontalContentAlignment="{Binding ElementName=horizontalContentAlignment, Path=SelectedItem.Tag}"
+                 FontFamily="{Binding ElementName=selectFontFamily, Path=SelectedItem.Tag}">
         </TextBox>
         
     </Grid>
